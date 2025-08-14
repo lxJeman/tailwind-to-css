@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   description: 'Convert Tailwind CSS utility classes to their equivalent CSS code in real-time. Perfect for learning, debugging, and understanding what CSS is generated from your Tailwind classes.',
   keywords: ['Tailwind CSS', 'CSS converter', 'utility classes', 'CSS generator', 'web development'],
   authors: [{ name: 'Tailwind to CSS Converter' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
     title: 'Tailwind to CSS Converter',

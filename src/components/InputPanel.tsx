@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState, memo } from 'react';
+import { useEffect, useState, memo, useMemo } from 'react';
 import { InputPanelProps } from '@/types/converter';
 
 interface EnhancedInputPanelProps extends InputPanelProps {
@@ -18,8 +18,8 @@ const InputPanel = memo(function InputPanel({
   const [localValue, setLocalValue] = useState(value);
 
   // Debounced onChange handler
-  const debouncedOnChange = useCallback(
-    debounce((newValue: string) => {
+  const debouncedOnChange = useMemo(
+    () => debounce((newValue: string) => {
       onChange(newValue);
     }, debounceMs),
     [onChange, debounceMs]
@@ -90,14 +90,14 @@ const InputPanel = memo(function InputPanel({
 export default InputPanel;
 
 // Debounce utility function
-function debounce<T extends (...args: any[]) => any>(
-  func: T,
+function debounce(
+  func: (value: string) => void,
   wait: number
-): (...args: Parameters<T>) => void {
+): (value: string) => void {
   let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>) => {
+  return (value: string) => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
+    timeout = setTimeout(() => func(value), wait);
   };
 }
 
